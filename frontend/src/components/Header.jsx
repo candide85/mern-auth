@@ -3,7 +3,7 @@ import {Link, NavLink} from 'react-router-dom'
 
 const Header = () => {
     return(
-        <div className="bg-slate-800 text-white py-8">
+        <div className="bg-slate-300  py-6">
             <div className='flex justify-between items-center max-w-7xl mx-auto'>
                 <Link to='/' >
                     <h3 className='font-bold'>APP AUTH</h3>
