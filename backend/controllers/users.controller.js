@@ -33,7 +33,7 @@ export const signup = async (req, res, next) => {
         return res.status(500).json({message: 'server error'})
     }
 
-    const passwordHash = bcrypt.hashSync(password)
+    const passwordHash = bcrypt.hashSync(password, 10)
 
     const user = new Users({
         username,
