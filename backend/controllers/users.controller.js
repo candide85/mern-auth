@@ -1,5 +1,8 @@
 import Users from '../models/users.model.js'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+dotenv.config()
 
 
 export const signup = async (req, res, next) => {
@@ -72,12 +75,24 @@ export const signin = async (req, res, next) => {
 
     try {
         if(!bcrypt.compareSync(password, user.password)) {
-            return res.status(400).json({message: 'password does not match'})
+            return res.status(400).json({message: 'wrong credentials'})
         }
     } catch (error) {
         return res.status(500).json({message: 'server error'})   
     }
+    
+    const userP = await Users.findOne({email: email}).select('-password')
+    const token = jwt.sign({id: user._id }, process.env.JWT_SECRET_KEY)
 
-    return res.status(200).json({message: `${user.username} is logged in successfully!`})
+    const expireDate = new Date(Date.now() + 30*60*1000)
+
+    res.cookie('access_token', token, 
+        {   Path: "/",
+            expires: expireDate, 
+            httpOnly: true, 
+            sameSite: "lax" 
+        })
+
+    .status(200).json({message: `${user.username} is logged in successfully!`,userP})
 
 }
