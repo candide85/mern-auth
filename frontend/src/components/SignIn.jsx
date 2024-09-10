@@ -1,49 +1,51 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
+import { startSignin, succesSignin, failureSignin } from "../redux/user/userSlice"
+import { useSelector, useDispatch } from "react-redux"
+
+
 
 axios.defaults.withCredentials = true
 
 const SignIn = () => {
-
+    
     const [formInputs, setFormInputs] = useState({
         email: '',
         password: ''
     })
     const [success, setSuccess] = useState('')
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
-
+    const { error, loading } = useSelector((state) =>state.user)
+    
     const url = "http://localhost:4000/api/v1/signin"
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormInputs(prevState => ({...prevState, [name]: value}))
     }
 
-
+    
     const signin = async () => {
-        setLoading(true)
+        dispatch(startSignin())
         await axios.post(url,formInputs, {
             withCredentials: true
         })
         .then(response => {
             setSuccess(response.data.message)
+            dispatch(succesSignin(response.data))          
             setTimeout(() => {
                 setSuccess('')
                 navigate('/')   
             }, 5000)
-            setLoading(false)
         })
         .catch(err => {
             if(err.response) {
-                setError(err.response.data.message)
+                dispatch(failureSignin(err.response.data.message))
                 setTimeout(() => {
-                    setError('')
+                    dispatch(failureSignin())
                 }, 5000)
-                setLoading(false)
-                
             }
         })
         setFormInputs({
@@ -56,12 +58,6 @@ const SignIn = () => {
         e.preventDefault()
 
         signin()
-        // .then(() => {
-        //     setTimeout(() => {
-        //         setLoading(true)
-        //         navigate('/')   
-        //     }, 5000)
-        // })
   
     }
 
