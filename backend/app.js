@@ -10,20 +10,10 @@ app.use(express.json())
 app.use(cookieParser())
 // app.use(express.static('dist'))
 
-const corsOptions = {
+app.use(cors({
     credentials: true,
-    origin: 'mern-auth-ugt6-clfs2yzzv-candide85s-projects.vercel.app', // replace with your actual front-end URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    // origin: `http://localhost:5173`
-  };
-
-app.use(cors(corsOptions))
-
-app.options('*', cors(corsOptions)); // Preflight requests for all routes
-
-
-
+    origin: `http://localhost:5173`
+}))
 
 app.use("/api/v1", user_router)
 
