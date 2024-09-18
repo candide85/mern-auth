@@ -96,3 +96,44 @@ export const signin = async (req, res, next) => {
     .status(200).json({message: `${user.username} is logged in successfully!`,userP})
 
 }
+
+
+export const google = async (req, res, next) => {
+    
+    try {
+        const user = await Users.findOne({email: req.body.email})
+        if(user) {
+            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY)
+            const { password: passwordHash, ...rest } = user._doc
+            const expireDate = new Date(Date.now() + 30*60*1000)
+            res.cookie("access_token", token, {
+                httpOnly: true,
+                expires: expireDate
+            }).status(200).json(rest)
+
+        }else {
+            const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8)
+            const passwordHash = bcrypt.hashSync(generatedPassword, 10)
+
+            const newUser = new Users({
+                username: req.body.name.split(" ").join("").toLowerCase() + Math.floor(Math.random() * 10000).toString(),
+                email: req.body.email,
+                password: passwordHash,
+                profilePicture: req.body.photo
+            })
+
+            await newUser.save()
+            const token = jwt.sign({id: newUser._id}, process.env.JWT_SECRET_KEY)
+            const { password: passwordHash2, ...rest } = newUser._doc
+            const expireDate = new Date(Date.now() + 30*60*1000)
+
+            res.cookie("access_token", token, {
+                httpOnly: true,
+                expires: expireDate
+            }).status(200).json(rest)
+        }
+    } catch (error) {
+        
+    }
+
+}

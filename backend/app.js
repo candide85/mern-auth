@@ -8,6 +8,7 @@ const app = express()
 
 app.use(express.json())
 app.use(cookieParser())
+// app.use(express.static('dist'))
 
 app.use(cors({
     credentials: true,
@@ -15,6 +16,7 @@ app.use(cors({
 }))
 
 app.use("/api/v1", user_router)
+// app.use("/api/auth", user_router)
 
 // app.use(errorHandler)
 
