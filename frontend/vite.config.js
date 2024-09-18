@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/v1': {
-        target: 'https://mern-auth-bd08b1i9a-candide85s-projects.vercel.app',
+        target: 'https://mern-auth-ku4nt4dy8-candide85s-projects.vercel.app/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
       },
