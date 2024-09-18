@@ -5,6 +5,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 
+export const test = async (req, res) => {
+    res.send("Backend deploy successfull!")
+}
+
 export const signup = async (req, res, next) => {
     const { username, email, password } = req.body
 

@@ -16,6 +16,8 @@ app.use(cors({
 }))
 
 app.use("/api/v1", user_router)
+
+app.use("/", user_router)
 // app.use("/api/auth", user_router)
 
 // app.use(errorHandler)
