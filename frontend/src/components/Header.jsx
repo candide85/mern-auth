@@ -23,7 +23,7 @@ const Header = () => {
                         </>
                     :
                         (
-                            <NavLink className=' text-lg p-2' to='signin' >Sign in</NavLink>                            
+                            <NavLink className=' text-lg p-2' to='/signin' >Sign in</NavLink>                            
                         )}
                 </ul>        
             </div>
