@@ -12,7 +12,8 @@ app.use(cookieParser())
 
 app.use(cors({
     credentials: true,
-    origin: `http://localhost:5173`
+    // origin: `http://localhost:5173`
+    origin: "https://mern-auth-ugt6-d3j1bqpkb-candide85s-projects.vercel.app/"
 }))
 
 app.use("/api/v1", user_router)
