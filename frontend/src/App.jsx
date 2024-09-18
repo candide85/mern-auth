@@ -15,10 +15,10 @@ function App() {
       <Header  />
     </header>
       <Routes>
-        <Route  path='/signup'  element={<SignUp   />}  />
+        <Route  path='/'  element={<SignUp   />}  />
         <Route  path='/signin'  element={<SignIn   />}  />
         <Route element={<PrivateRoute  />}>
-          <Route  path='/'  element={<Home   />}  />
+          <Route  path='/home'  element={<Home   />}  />
           <Route  path='/about'  element={<About   />}  />
           <Route  path='/profile'  element={<Profile   />}  />
         </Route>
