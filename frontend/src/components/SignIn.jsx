@@ -18,7 +18,8 @@ const SignIn = () => {
     const [success, setSuccess] = useState('')
     const { error, loading } = useSelector((state) =>state.user)
     
-    const url = "http://localhost:4000/api/v1/signin"
+    // const url = "http://localhost:4000/api/v1/signin"
+    const url = "https://mern-auth-bd08b1i9a-candide85s-projects.vercel.app/api/v1/signin"
     // const url = "/api/v1/signin"
     const navigate = useNavigate()
     const dispatch = useDispatch()
