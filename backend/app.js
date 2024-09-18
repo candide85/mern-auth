@@ -12,7 +12,7 @@ app.use(cookieParser())
 
 const corsOptions = {
     credentials: true,
-    origin: 'https://mern-auth-ugt6-d3j1bqpkb-candide85s-projects.vercel.app', // replace with your actual front-end URL
+    origin: 'mern-auth-ugt6-clfs2yzzv-candide85s-projects.vercel.app', // replace with your actual front-end URL
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     // origin: `http://localhost:5173`
