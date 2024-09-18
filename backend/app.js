@@ -20,6 +20,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
+app.options('*', cors(corsOptions)); // Preflight requests for all routes
+
+
 
 
 app.use("/api/v1", user_router)
