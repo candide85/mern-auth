@@ -10,11 +10,17 @@ app.use(express.json())
 app.use(cookieParser())
 // app.use(express.static('dist'))
 
-app.use(cors({
+const corsOptions = {
     credentials: true,
+    origin: 'https://mern-auth-ugt6-d3j1bqpkb-candide85s-projects.vercel.app', // replace with your actual front-end URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     // origin: `http://localhost:5173`
-    origin: "https://mern-auth-ugt6-d3j1bqpkb-candide85s-projects.vercel.app/"
-}))
+  };
+
+app.use(cors(corsOptions))
+
+
 
 app.use("/api/v1", user_router)
 
