@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/v1': {
-        target: 'http://localhost:4000',
+        target: 'https://mern-auth-api-drab.vercel.app',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
       },
