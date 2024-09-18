@@ -17,7 +17,7 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false)
 
     // const url = "http://localhost:4000/api/v1/signup"
-    const url = "https://mern-auth-bd08b1i9a-candide85s-projects.vercel.app/api/v1/signup"
+    const url = "https://mern-auth-ku4nt4dy8-candide85s-projects.vercel.app/api/v1/signup"
     // const url = "/api/v1/signup"
     const navigate = useNavigate()
 
