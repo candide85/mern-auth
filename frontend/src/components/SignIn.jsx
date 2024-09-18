@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios'
 import { startSignin, succesSignin, failureSignin } from "../redux/user/userSlice"
 import { useSelector, useDispatch } from "react-redux"
+import Oath from "./Oath"
 
 
 
@@ -18,6 +19,7 @@ const SignIn = () => {
     const { error, loading } = useSelector((state) =>state.user)
     
     const url = "http://localhost:4000/api/v1/signin"
+    // const url = "/api/v1/signin"
     const navigate = useNavigate()
     const dispatch = useDispatch()
     
@@ -37,15 +39,16 @@ const SignIn = () => {
             dispatch(succesSignin(response.data))          
             setTimeout(() => {
                 setSuccess('')
-                navigate('/')   
-            }, 5000)
+            }, 4000)
+
+            navigate('/')
         })
         .catch(err => {
             if(err.response) {
                 dispatch(failureSignin(err.response.data.message))
                 setTimeout(() => {
                     dispatch(failureSignin())
-                }, 5000)
+                }, 4000)
             }
         })
         setFormInputs({
@@ -67,13 +70,20 @@ const SignIn = () => {
             {success && <p className="text-center bg-green-600 p-4 text-xl text-white">{success}</p>}
             {error && <p className="text-center bg-red-600 p-4 text-xl text-white">{error}</p>}
             <h1 className="text-center py-7 mb-5 text-5xl font-semibold text-white">Sign In</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 shadow-xl">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 shadow-xl">
                 <input onChange={handleChange} type="email" name="email" value={formInputs.email}  placeholder="email" className="bg-slate-100 p-4 rounded-lg text-lg" />
                 <input onChange={handleChange} type="password" name="password" value={formInputs.password} placeholder="password" className="bg-slate-100 p-4 rounded-lg text-lg" />
-                <button className="bg-slate-800 border opacity-50 text-white p-4 mt-4 rounded-lg text-2xl font-medium shadow-xl" type="submit">
+                <button className="bg-slate-800 border  text-white p-4 mt-2 rounded-lg text-2xl font-medium shadow-xl" type="submit">
                     {loading ? "loading..." : "Login"}
                 </button>
+                <Oath  />
             </form>
+            <div className="flex items-center gap-2 mt-3">
+                <p className="text-white">Dont Have an Account ?</p>
+                <Link to='/signup' >
+                    <span className="text-sky-400 font-medium text-lg">sign up</span>
+                </Link>
+            </div>
         </div>
     )
 }

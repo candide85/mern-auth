@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios'
+import Oath from "./Oath"
 
 
 
@@ -16,6 +17,7 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false)
 
     const url = "http://localhost:4000/api/v1/signup"
+    // const url = "/api/v1/signup"
     const navigate = useNavigate()
 
     const handleChange = (e) => {
@@ -67,13 +69,14 @@ const SignUp = () => {
             {success && <p className="text-center bg-green-600 p-4 text-xl text-white">{success}</p>}
             {error && <p className="text-center bg-red-600 p-4 text-xl text-white">{error}</p>}
             <h1 className="text-center py-7 mb-5 text-5xl font-semibold text-white">Sign Up</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 shadow-xl">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 shadow-xl">
                 <input onChange={ handleChange } type="text" value={formInputs.username} name="username" placeholder="username" className="bg-slate-100 p-4 rounded-lg text-lg" />
                 <input onChange={ handleChange } type="email" value={formInputs.email} name="email" placeholder="email" className="bg-slate-100 p-4 rounded-lg text-lg" />
                 <input onChange={ handleChange } type="password" value={formInputs.password} name="password" placeholder="password" className="bg-slate-100 p-4 rounded-lg text-lg" />
-                <button className="bg-slate-800 border opacity-50 text-white p-4 mt-4 rounded-lg text-2xl font-medium shadow-xl" type="submit">
+                <button className="bg-slate-800 border  text-white p-4 mt-2 rounded-lg text-2xl font-medium shadow-xl" type="submit">
                     {loading ? "loading..." : "Submit"}
                 </button>
+                <Oath  />
             </form>
             <div className="flex items-center gap-2 mt-3">
                 <p className="text-white">Have an Account ?</p>

@@ -3,7 +3,9 @@ body{
 }
 
 .active {
-    color: white
+    color: white;
+    text-decoration: underline;
+    padding: 1px
 }
 
 @tailwind base;
