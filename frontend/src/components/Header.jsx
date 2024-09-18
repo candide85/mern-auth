@@ -15,7 +15,7 @@ const Header = () => {
                 <ul className='flex gap-6 font-medium text-xl items-center '>
                     {currentUser ?  
                         <>
-                            <NavLink to='/home' >Home</NavLink>
+                            <NavLink to='/' >Home</NavLink>
                             <NavLink to='/about' >About</NavLink>
                             <Link to='/profile'>
                                 <img className='text-sm rounded-full object-cover w-12 h-12' src={currentUser.profilePicture} alt="no profile picture"  />                        
@@ -23,7 +23,7 @@ const Header = () => {
                         </>
                     :
                         (
-                            <NavLink className=' text-lg p-2' to='/signin' >Sign in</NavLink>                            
+                            <NavLink className=' text-lg p-2' to='signin' >Sign in</NavLink>                            
                         )}
                 </ul>        
             </div>

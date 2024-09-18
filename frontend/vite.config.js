@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/v1': {
-        target: 'https://mern-auth-ku4nt4dy8-candide85s-projects.vercel.app/',
+        target: 'http://localhost:4000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
       },
@@ -15,5 +15,3 @@ export default defineConfig({
   },
 });
 
-
-// target: "http://localhost:4000"
