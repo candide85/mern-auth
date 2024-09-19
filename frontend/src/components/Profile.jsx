@@ -7,7 +7,6 @@ import { app } from "../firebase/firebase"
 
 const Profile = () => {
     const {currentUser} = useSelector(state => state.user)
-    console.log(currentUser);
     const fileRef = useRef(null)
     const [image, setImage] = useState(undefined)
     const [imageProgress, setImageProgress] = useState(0)

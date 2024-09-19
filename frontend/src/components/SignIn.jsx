@@ -7,7 +7,7 @@ import Oath from "./Oath"
 
 
 
-axios.defaults.withCredentials = true
+// axios.defaults.withCredentials = true
 
 const SignIn = () => {
     
@@ -32,7 +32,8 @@ const SignIn = () => {
     const signin = async () => {
         dispatch(startSignin())
         await axios.post(url,formInputs, {
-            withCredentials: true
+            // withCredentials: true
+            headers: "Authorization"
         })
         .then(response => {
             setSuccess(response.data.message)

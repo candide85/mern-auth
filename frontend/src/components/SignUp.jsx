@@ -35,7 +35,7 @@ const SignUp = () => {
         e.preventDefault()
 
         setLoading(true)
-        const res = axios.post(url,payload)
+        const res = axios.post(url,payload,{headers: 'Authorization'})
         .then(response => {
             setSuccess(response.data.message)
             setLoading(false)

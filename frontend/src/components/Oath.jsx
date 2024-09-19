@@ -16,7 +16,7 @@ const Oath = () => {
             const auth = getAuth(app)
             const result = await signInWithPopup(auth, provider)
 
-            const res = await fetch("/api/v1/google", {
+            const res = await fetch("https://mern-auth-api-drab.vercel.app/api/v1/google", {
                 method: "POST",
                 headers: {
                     "content-Type": "application/json"
