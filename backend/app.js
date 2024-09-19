@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import user_router from './routes/users.route.js'
-import { errorHandler } from './utils/middlewares.js'
 import cookieParser from 'cookie-parser'
 
 const app = express()
@@ -12,9 +11,10 @@ app.use(cookieParser())
 
 app.use(cors({
     credentials: true,
-    origin: `http://localhost:5173`,
+    origin: [`http://localhost:5173`, 'https://mern-auth-frontend-black.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }))
+
 
 app.use("/api/v1", user_router)
 
